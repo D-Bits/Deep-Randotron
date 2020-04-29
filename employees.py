@@ -4,7 +4,7 @@ from csv import DictWriter
 
 
 # Generate an arbitrary number of fake employees, and write them to a CSV
-def gen_employees(emp_num):
+def gen_employees_csv(emp_num):
 
     emp = open('data/employees.csv', 'w', newline='')
     fields = ['last_name','first_name','email','emp_password','home_address','city','state', 'zip']
