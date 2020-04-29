@@ -1,5 +1,10 @@
 from employees import gen_employees_csv
 
+# Store the user's options in a dictionary
+options = {
+    1: 'Generate random data for employees.'
+}
+
 
 def main():
     
