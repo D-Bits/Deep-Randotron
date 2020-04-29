@@ -1,2 +1,2 @@
 
-*Look in this directory for your data files. Happy mocking! :)
+*Look in this directory for your data files. Happy data mocking! :)
