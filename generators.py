@@ -3,6 +3,13 @@ from faker.providers.address import Provider
 from csv import DictWriter
 
 
+
+options = {
+    0: "Return to Main Menu.",
+    1: "Generate Mock Data for Employees.",
+}
+
+
 # Generate an arbitrary number of fake employees, and write them to a CSV
 def gen_employees_csv(emp_num):
 
@@ -30,3 +37,22 @@ def gen_employees_csv(emp_num):
             }
         )
 
+
+def generators_main():
+
+    for key, val in options.items():
+
+        print(key, val)
+
+    # Blank line for readability 
+    print()
+
+    u_choice = int(input("Enter a choice, based on the above options: "))
+
+    if u_choice == 1:
+        user_num = int(input("Please enter the number of records you want to generate: "))
+        gen_employees_csv(user_num)
+        print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "employees.csv" file ')
+    else:
+        print("***Please enter a valid int, from the below options.***")
+        generators_main()

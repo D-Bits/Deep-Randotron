@@ -1,20 +1,34 @@
-from employees import gen_employees_csv
+from generators import generators_main
+from converters import converter_main
+
 
 # Store the user's options in a dictionary
 options = {
-    1: 'Generate random data for employees.'
+    1: 'Generate Random Data.',
+    2: 'Convert random CSV data to other formats.'
 }
 
 
 def main():
     
-    try:
-        # Prompt the user to enter how many records worth of data they want to generate
-        user_num = int(input("Please enter an integer (no commas) for how many records of test data you want to generate: "))
-        gen_employees_csv(user_num)
-        print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "employees.csv" file ')
-    except ValueError:
-        print("Please enter an integer. Program terminated.")
+    # Blank line for readability 
+    print()
 
+    for key, val in options.items():
+
+        print(key, val)
+
+    print()
+
+    u_choice = int(input("Enter a choice, based on the below options: "))
+
+    if u_choice == 1:
+        generators_main()
+    elif u_choice == 2:
+        converter_main()
+    else:
+        print()
+        print("***Please enter a valid int, from the above options.***")
+        main()
 
 main()
