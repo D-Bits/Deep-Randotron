@@ -12,9 +12,9 @@ options = {
 
 
 # Generate an arbitrary number of fake employees, and write them to a CSV
-def gen_employees_csv(records_num):
+def gen_employees_csv(filename, records_num):
 
-    emp = open('data/employees.csv', 'w', newline='')
+    emp = open(f'data/{filename}.csv', 'w', newline='')
     fields = ['last_name','first_name','job','email','password_hash','phone','home_address','city','state','zip']
     writer = DictWriter(emp, fieldnames=fields)
     # Write the columns to file
@@ -41,9 +41,9 @@ def gen_employees_csv(records_num):
 
 
 # Generate fake information about servers
-def gen_servers(records_num):
+def gen_servers(filename, records_num):
 
-    servers = open('data/servers.csv', 'w', newline='')
+    servers = open(f'data/{filename}.csv', 'w', newline='')
     fields = ['hostname', 'ip_public', 'ip_private', 'mac_address', 'port']
     writer = DictWriter(servers, fieldnames=fields)
     # Write the columns to file
@@ -76,11 +76,13 @@ def generators_main():
     u_choice = int(input("Enter a choice, based on the above options: "))
     user_num = int(input("Please enter the number of records you want to generate: "))
 
-    if u_choice == 1:   
-        gen_employees_csv(user_num)
+    if u_choice == 1:
+        user_filename = input("Enter a name (without an extension) for the file containing mock data: ")   
+        gen_employees_csv(user_filename, user_num)
         print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "employees.csv" file ')
     elif u_choice == 2:
-        gen_servers(user_num)
+        user_filename = input("Enter a name (without an extension) for the file containing mock data: ") 
+        gen_servers(user_filename, user_num)
         print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "servers.csv" file ')
     else:
         print("***Please enter a valid int, from the below options.***")
