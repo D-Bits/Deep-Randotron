@@ -1,7 +1,6 @@
 from faker import Faker
 from faker.providers.address import Provider
 from csv import DictWriter
-from main import main
 
 
 options = {
