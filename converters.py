@@ -43,7 +43,7 @@ def converter_main():
             json_convert(file_path, file_name)
         elif u_choice == 2:
             file_path = input("Enter the file path of the file you want to convert to a Excel file: ")
-            file_name = input("Enter a name for your JSON file, without a file extension: ")
+            file_name = input("Enter a name for your Excel file, without a file extension: ")
             excel_convert(file_path, file_name)
     
     except ValueError:
