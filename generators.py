@@ -5,12 +5,13 @@ from csv import DictWriter
 
 options = {
     1: "Generate Mock Data for Employees.",
-    2: "Generate Mock Data for Servers."
+    2: "Generate Mock Data for Servers.",
+    3: "Generate Lorem Ipsum Text.",
 }
 
 
 # Generate an arbitrary number of fake employees, and write them to a CSV
-def gen_employees_csv(filename, records_num):
+def employees_generator(filename, records_num):
 
     emp = open(f'data/{filename}.csv', 'w', newline='')
     fields = ['last_name','first_name','job','email','password_hash','phone','home_address','city','state','zip']
@@ -39,7 +40,7 @@ def gen_employees_csv(filename, records_num):
 
 
 # Generate fake information about servers
-def gen_servers(filename, records_num):
+def servers_generator(filename, records_num):
 
     servers = open(f'data/{filename}.csv', 'w', newline='')
     fields = ['hostname', 'ip_public', 'ip_private', 'mac_address', 'port']
@@ -62,6 +63,18 @@ def gen_servers(filename, records_num):
         )
 
 
+# Generate placeholder text
+def loremipsum_generator(filename, paragraph_num):
+
+    ipsum = open(f'data/{filename}.txt', 'w', newline='')
+
+    fake = Faker()
+
+    for i in range(paragraph_num):
+
+        ipsum.write(fake.paragraph())
+
+
 def generators_main():
 
     for key, val in options.items():
@@ -72,16 +85,20 @@ def generators_main():
     print()
 
     u_choice = int(input("Enter a choice, based on the above options: "))
-    user_num = int(input("Please enter the number of records you want to generate: "))
+    user_num = int(input("Please enter the number of records (or paragraphs) you want to generate: "))
 
     if u_choice == 1:
         user_filename = input("Enter a name (without an extension) for the file containing mock data: ")   
-        gen_employees_csv(user_filename, user_num)
-        print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "employees.csv" file ')
+        employees_generator(user_filename, user_num)
+        print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "{user_filename}.csv" file ')
     elif u_choice == 2:
         user_filename = input("Enter a name (without an extension) for the file containing mock data: ") 
-        gen_servers(user_filename, user_num)
-        print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "servers.csv" file ')
+        servers_generator(user_filename, user_num)
+        print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "{user_filename}.csv" file ')
+    elif u_choice == 3:
+        user_filename = input("Enter a name (without an extension) for the file containing mock data: ") 
+        loremipsum_generator(user_filename, user_num)
+        print(f'{user_num} record(s) successfully generated. Check the "data" directory for an "{user_filename}.txt" file ')
     else:
         print("***Please enter a valid int, from the below options.***")
         generators_main()
