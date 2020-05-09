@@ -1,5 +1,6 @@
 """
-Module for converting generated 
+Module for converting generated data into
+different file types.
 """
 import pandas as pd
 
@@ -14,17 +15,25 @@ options = {
 # Convert CSV to JSON
 def json_convert(filepath, filename):
 
-    df = pd.read_csv(filepath)
+    try:
+        df = pd.read_csv(filepath)
 
-    df.to_json(f'data/{filename}.json', orient='records')
+        df.to_json(f'data/{filename}.json', orient='records')
+
+    except FileNotFoundError:
+        print("ERROR: File not found!")
 
 
 # Convert CSV to Excel workbook
 def excel_convert(filepath, filename):
 
-    df = pd.read_csv(filepath)
+    try:
+        df = pd.read_csv(filepath)
 
-    df.to_excel(f'data/{filename}.xlsx')
+        df.to_excel(f'data/{filename}.xlsx')
+    
+    except FileNotFoundError:
+        print("ERROR: File not found!")
 
 
 def converter_main():
